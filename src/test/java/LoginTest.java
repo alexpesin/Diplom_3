@@ -2,12 +2,13 @@ import org.example.data.User;
 import org.example.pom.HeaderPage;
 import org.example.pom.HomePage;
 import org.example.pom.PersonalAccountPage;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class LoginTest extends TestBase{
+public class LoginTest extends TestBase {
 
     @Test
-    public void userSighInViaAccountButtonWithValidDataShouldSuccessTest(){
+    public void userSighInViaAccountButtonWithValidDataShouldSuccessTest() {
         User user = registerNewUser();
 
         HomePage homePage = new HomePage(getDriver());
@@ -21,13 +22,14 @@ public class LoginTest extends TestBase{
                 .setUserEmail(user.getEmail())
                 .setUserPassword(user.getPassword())
                 .clickLoginButton();
-                waitForLoadHomePage();
+        waitForLoadHomePage();
 
 
         Assert.assertTrue("Пользователь должен перейти на главную страницу ", isElementPresent(homePage.getPlaceOrderButton()));
     }
+
     @Test
-    public void userSighInViaPersonalAccountButtonWithValidDataShouldSuccessTest(){
+    public void userSighInViaPersonalAccountButtonWithValidDataShouldSuccessTest() {
         User user = registerNewUser();
 
         HomePage homePage = new HomePage(getDriver());
@@ -45,7 +47,7 @@ public class LoginTest extends TestBase{
     }
 
     @Test
-    public void userSighInViaRegisterFormPageLoginButtonWithValidDataShouldSuccessTest(){
+    public void userSighInViaRegisterFormPageLoginButtonWithValidDataShouldSuccessTest() {
         User user = registerNewUser();
 
         HomePage homePage = new HomePage(getDriver());
@@ -68,7 +70,7 @@ public class LoginTest extends TestBase{
     }
 
     @Test
-    public void userSighInViaForgotPasswordPageLoginButtonWithValidDataShouldSuccessTest(){
+    public void userSighInViaForgotPasswordPageLoginButtonWithValidDataShouldSuccessTest() {
         User user = registerNewUser();
 
         HomePage homePage = new HomePage(getDriver());
@@ -96,11 +98,11 @@ public class LoginTest extends TestBase{
                 .waitForLoadPersonalAccountPage();
 
         String expectedUserNameAttributeValue = user.getName();
-        String actualUserNameAttributeValue = personalAccountPage.getElementAttributeValue(personalAccountPage.getUserNameInputField(),"value");
+        String actualUserNameAttributeValue = personalAccountPage.getElementAttributeValue(personalAccountPage.getUserNameInputField(), "value");
         Assert.assertEquals("Ожидаемое имя залогиненного пользователя не соответсвует актуальному", expectedUserNameAttributeValue, actualUserNameAttributeValue);
 
         String expectedUserEmailAttributeValue = user.getEmail();
-        String actualUserEmailAttributeValue = personalAccountPage.getElementAttributeValue(personalAccountPage.getUserLoginInputField(),"value");
+        String actualUserEmailAttributeValue = personalAccountPage.getElementAttributeValue(personalAccountPage.getUserLoginInputField(), "value");
         Assert.assertEquals("Ожидаемый логин (email) залогиненного пользователя не соответсвует актуальному", expectedUserEmailAttributeValue, actualUserEmailAttributeValue);
     }
 

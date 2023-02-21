@@ -4,15 +4,14 @@ import org.example.pom.HomePage;
 import org.example.pom.LoginPage;
 import org.example.pom.RegisterPage;
 import org.junit.Assert;
-
 import org.junit.Test;
 
 
-public class RegistrationTest extends TestBase{
+public class RegistrationTest extends TestBase {
 
 
     @Test
-    public void userSighUpWithInvalidPasswordLessThenSixSymbolsShouldFailTest(){
+    public void userSighUpWithInvalidPasswordLessThenSixSymbolsShouldFailTest() {
         int invalidPasswordLessThenSixSymbols = UserGenerator.generateUserPasswordLength(1, 5);
         String name = UserGenerator.generateUserName();
         String email = UserGenerator.generateUserEmail();
@@ -36,7 +35,7 @@ public class RegistrationTest extends TestBase{
     }
 
     @Test
-    public void userSighUpValidDataShouldSuccessTest(){
+    public void userSighUpValidDataShouldSuccessTest() {
         int validPassword = UserGenerator.generateUserPasswordLength(6, 15);
         String name = UserGenerator.generateUserName();
         String email = UserGenerator.generateUserEmail();

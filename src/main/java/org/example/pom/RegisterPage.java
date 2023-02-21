@@ -16,15 +16,15 @@ public class RegisterPage {
     private final By authButton = By.xpath(".//button[text()='Зарегистрироваться']");
     private final By nameInputField = By.xpath(".//form//label[text()='Имя']/following-sibling::input[@type='text']");
     private final By emailInputField = By.xpath(".//form//label[text()='Email']/following-sibling::input[@type='text']");
-    //private By passwordInputField = By.xpath("//form//label[text()='Пароль']/following-sibling::input[@type='password']");
+
     private final By passwordInputField = By.xpath(".//form//input[@type='password']");
-    //private By invalidUserPasswordErrorMessage = By.xpath(".//input[@type='password']//ancestor::*//following-sibling::p[text() = 'Некорректный пароль']");
+
     private final By invalidUserPasswordErrorMessage = By.xpath(".//*[text() = 'Некорректный пароль']");
     private final By loginLinkOnRegisterPage = By.xpath(".//a[@href='/login']");
 
 
     public RegisterPage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
@@ -49,7 +49,7 @@ public class RegisterPage {
         return this;
     }
 
-    public LoginPage signUp(String username, String userEmail, String password){
+    public LoginPage signUp(String username, String userEmail, String password) {
         setUsername(username);
         setUserEmail(userEmail);
         setUserPassword(password);
@@ -62,6 +62,7 @@ public class RegisterPage {
                 .until(ExpectedConditions.visibilityOfElementLocated(authForm));
         return new RegisterPage(driver);
     }
+
     public By getSignUpButton() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(authButton));
@@ -73,6 +74,7 @@ public class RegisterPage {
                 .until(ExpectedConditions.visibilityOfElementLocated(invalidUserPasswordErrorMessage));
         return driver.findElement(invalidUserPasswordErrorMessage).getText();
     }
+
     public LoginPage clickLoginLinkOnRegisterFormPage() {
         driver.findElement(loginLinkOnRegisterPage).click();
         return new LoginPage(driver)

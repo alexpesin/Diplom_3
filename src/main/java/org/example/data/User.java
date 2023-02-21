@@ -3,11 +3,10 @@ package org.example.data;
 import com.github.javafaker.Faker;
 
 public class User {
+    private static Faker faker;
     private String name;
     private String email;
     private String password;
-
-    private static Faker faker;
 
     public User(String name, String email, String password) {
         this.name = name;
