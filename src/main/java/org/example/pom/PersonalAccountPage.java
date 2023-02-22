@@ -1,5 +1,6 @@
 package org.example.pom;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -31,12 +32,14 @@ public class PersonalAccountPage {
         return userLoginInputField;
     }
 
+    @Step("Клик по кнопке Выхода из аккаунта")
     public LoginPage clickLogOutButton() {
         driver.findElement(logoutButton).click();
         return new LoginPage(driver)
                 .waitForLoadLoginPage();
     }
 
+    @Step("Ожидание загрузки страницы Личного кабинета")
     public PersonalAccountPage waitForLoadPersonalAccountPage() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(logoutButton));

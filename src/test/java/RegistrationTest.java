@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.example.data.User;
 import org.example.data.UserGenerator;
 import org.example.pom.HomePage;
@@ -11,6 +13,8 @@ public class RegistrationTest extends TestBase {
 
 
     @Test
+    @DisplayName("Регистрация нового пользователя с невалидными данными выдает ошибку")
+    @Description("Проверка ошибки для некорректного пароля. Минимальный пароль — шесть символов")
     public void userSighUpWithInvalidPasswordLessThenSixSymbolsShouldFailTest() {
         int invalidPasswordLessThenSixSymbols = UserGenerator.generateUserPasswordLength(1, 5);
         String name = UserGenerator.generateUserName();
@@ -35,6 +39,8 @@ public class RegistrationTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Регистрация нового пользователя")
+    @Description("Проверка что пользователь успешно зарегистрирован")
     public void userSighUpValidDataShouldSuccessTest() {
         int validPassword = UserGenerator.generateUserPasswordLength(6, 15);
         String name = UserGenerator.generateUserName();

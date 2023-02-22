@@ -1,5 +1,6 @@
 package org.example.pom;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -21,6 +22,7 @@ public class LoginPage {
         this.driver = driver;
     }
 
+    @Step("Ожидание загрузки страницы с формой логина")
     public LoginPage waitForLoadLoginPage() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginButton));
@@ -33,30 +35,36 @@ public class LoginPage {
         return loginButton;
     }
 
+    @Step("Кликнуть на кнопку «Войти»")
     public void clickLoginButton() {
         driver.findElement(loginButton).click();
     }
 
+    @Step("Кликнуть на кнопку «Зарегистрироваться»")
     public RegisterPage clickRegisterLink() {
         driver.findElement(registerLink).click();
         return new RegisterPage(driver).waitForLoadRegisterPage();
     }
 
+    @Step("Переход на страницу регистрации пользователя")
     public RegisterPage getRegisterPage() {
         driver.findElement(registerLink).click();
         return new RegisterPage(driver).waitForLoadRegisterPage();
     }
 
+    @Step("Ввести емейл (логин) пользователя")
     public LoginPage setUserEmail(String userEmail) {
         driver.findElement(emailInputField).sendKeys(userEmail);
         return this;
     }
 
+    @Step("Ввести пароль пользователя")
     public LoginPage setUserPassword(String userPassword) {
         driver.findElement(passwordInputField).sendKeys(userPassword);
         return this;
     }
 
+    @Step("Кликнуть на кнопку «Восстановить пароль»")
     public ForgotPasswordPage clickForgotPasswordLink() {
         driver.findElement(forgotPasswordLink).click();
         return new ForgotPasswordPage(driver)

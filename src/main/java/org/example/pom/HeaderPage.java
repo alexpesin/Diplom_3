@@ -1,5 +1,6 @@
 package org.example.pom;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -20,17 +21,20 @@ public class HeaderPage {
         this.driver = driver;
     }
 
+    @Step("переход на главную страницу")
     public HomePage clickStellarBurgersLink() {
         driver.findElement(stellarBurgersLink).click();
         return new HomePage(driver)
                 .waitForLoadHomePage();
     }
 
+    @Step("Кликнуть на кнопку «Личный кабинет»")
     public LoginPage clickPersonalAccountLink() {
         driver.findElement(personalAccountLink).click();
         return new LoginPage(driver);
     }
 
+    @Step("переход в конструктор")
     public HomePage clickBurgerBuilderLink() {
         driver.findElement(burgerBuilderLink).click();
         return new HomePage(driver)

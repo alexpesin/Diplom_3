@@ -1,5 +1,6 @@
 package org.example.pom;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -29,26 +30,31 @@ public class RegisterPage {
     }
 
     //methods
+    @Step("Ввести имя пользователя")
     public RegisterPage setUsername(String username) {
         driver.findElement(nameInputField).sendKeys(username);
         return this;
     }
 
+    @Step("Ввести емейл пользователя")
     public RegisterPage setUserEmail(String userEmail) {
         driver.findElement(emailInputField).sendKeys(userEmail);
         return this;
     }
 
+    @Step("Ввести пароль пользователя")
     public RegisterPage setUserPassword(String userPassword) {
         driver.findElement(passwordInputField).sendKeys(userPassword);
         return this;
     }
 
+    @Step("Кликнуть на кнопку регистрации")
     public RegisterPage clickSignInButton() {
         driver.findElement(authButton).click();
         return this;
     }
 
+    @Step("Регистрация нового пользователя")
     public LoginPage signUp(String username, String userEmail, String password) {
         setUsername(username);
         setUserEmail(userEmail);
@@ -57,6 +63,7 @@ public class RegisterPage {
         return new LoginPage(driver);
     }
 
+    @Step("Ожидание загрузки страницы с формой регистрации")
     public RegisterPage waitForLoadRegisterPage() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(authForm));
@@ -75,6 +82,7 @@ public class RegisterPage {
         return driver.findElement(invalidUserPasswordErrorMessage).getText();
     }
 
+    @Step("Кликнуть на кнопку «Войти»")
     public LoginPage clickLoginLinkOnRegisterFormPage() {
         driver.findElement(loginLinkOnRegisterPage).click();
         return new LoginPage(driver)

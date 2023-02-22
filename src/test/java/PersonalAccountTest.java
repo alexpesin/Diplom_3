@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.example.data.User;
 import org.example.pom.HeaderPage;
 import org.example.pom.HomePage;
@@ -8,6 +10,8 @@ import org.junit.Test;
 
 public class PersonalAccountTest extends TestBase {
     @Test
+    @DisplayName("Переход по клику на «Личный кабинет»")
+    @Description("Проверка, что залогиненный пользователь может успешно войти в «Личный кабинет»")
     public void openPersonalAccountAsLoggedUserShouldSuccessTest() {
         HomePage homePage = new HomePage(getDriver());
         PersonalAccountPage personalAccountPage = new PersonalAccountPage(getDriver());
@@ -25,6 +29,8 @@ public class PersonalAccountTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Переход из личного кабинета в конструктор")
+    @Description("Проверка, что залогиненный пользователь может перейти из «Личного кабинета» в конструктор")
     public void openBurgerBuilderPageFromPersonalAccountPageShouldSuccessTest() {
         HomePage homePage = new HomePage(getDriver());
         HeaderPage headerPage = new HeaderPage(getDriver());
@@ -41,6 +47,8 @@ public class PersonalAccountTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Выход по кнопке «Выйти» в личном кабинете")
+    @Description("Проверка выхода из аккаунта по кнопке «Выйти» в личном кабинете")
     public void signOutFromPersonalAccountPageShouldSuccessTest() {
         HomePage homePage = new HomePage(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());

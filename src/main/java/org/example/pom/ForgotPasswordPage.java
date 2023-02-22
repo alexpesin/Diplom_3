@@ -1,5 +1,6 @@
 package org.example.pom;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -18,12 +19,14 @@ public class ForgotPasswordPage {
         this.driver = driver;
     }
 
+    @Step("Кликнуть на кнопку Войти на форме Восстановление пароля")
     public LoginPage clickLoginLinkOnForgotPasswordPage() {
         driver.findElement(loginLinkOnForgotPasswordPage).click();
         return new LoginPage(driver)
                 .waitForLoadLoginPage();
     }
 
+    @Step("Ожидание загрузки страницы с формой восстановления пароля")
     public ForgotPasswordPage waitForLoadForgotPasswordPage() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(recoverButton));

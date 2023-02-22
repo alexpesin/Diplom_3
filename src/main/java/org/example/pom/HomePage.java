@@ -1,5 +1,6 @@
 package org.example.pom;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -19,23 +20,27 @@ public class HomePage {
         this.driver = driver;
     }
 
+    @Step("ожидание загрузки страницы")
     public HomePage waitForLoadHomePage() {
         new WebDriverWait(driver, Duration.ofSeconds(90))
                 .until(ExpectedConditions.visibilityOfElementLocated(burgerIngredientsContainer));
         return new HomePage(driver);
     }
 
+    @Step("Клик по кнопке «Войти в аккаунт»")
     public LoginPage clickLoginAccountButton() {
         driver.findElement(loginAccountButton).click();
         return new LoginPage(driver);
     }
 
+    @Step("Переход на странцу с формой логина")
     public LoginPage getLoginPage() {
         driver.findElement(loginAccountButton).click();
         return new LoginPage(driver)
                 .waitForLoadLoginPage();
     }
 
+    @Step("Проверка, что на главной странице после успешного логина есть кнопка «Оформить заказ»")
     public By getPlaceOrderButton() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(placeOrderButton));

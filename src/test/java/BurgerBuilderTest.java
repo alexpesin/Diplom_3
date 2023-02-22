@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.example.pom.BurgerBuilderPage;
 import org.junit.Assert;
 import org.junit.Test;
@@ -5,12 +7,10 @@ import org.junit.Test;
 
 public class BurgerBuilderTest extends TestBase {
 
-    /*
-     * таб с булками выбран по дефолту,  а дефолтный таб не кликабельный
-     * поэтому добавил проверку и перехожу на другой
-     */
     @Test
-
+    @DisplayName("Переход к разделу «Булки»")
+    @Description("Проверка, что пользователь может переходить к разделу «Булки» по клику. Дефолтный раздел некликабелен." +
+            "поэтому есть проверка на дефолтность и если раздел дефолтный, то сначала перехожу на другой")
     public void getBunsTabShouldSuccessTest() {
         BurgerBuilderPage burgerBuilderPage = new BurgerBuilderPage(getDriver());
         String attributeName = "class";
@@ -22,10 +22,12 @@ public class BurgerBuilderTest extends TestBase {
         burgerBuilderPage
                 .clickBunsTab();
 
-        Assert.assertTrue("Пользователь должен перейти в раздел 'Булки'", isAttributePresent(burgerBuilderPage.getBunsTab(), attributeName, value));
+        Assert.assertTrue("Пользователь должен перейти в раздел «Булки»", isAttributePresent(burgerBuilderPage.getBunsTab(), attributeName, value));
     }
 
     @Test
+    @DisplayName("Переход к разделу «Соусы»")
+    @Description("Проверка, что пользователь может переходить к разделу «Соусы» по клику по клику")
     public void getSauceTabShouldSuccessTest() {
         BurgerBuilderPage burgerBuilderPage = new BurgerBuilderPage(getDriver());
         burgerBuilderPage
@@ -36,6 +38,8 @@ public class BurgerBuilderTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Переход к разделу «Начинки»")
+    @Description("Проверка, что пользователь может переходить к разделу «Начинки» по клику")
     public void getFillingTabShouldSuccessTest() {
         BurgerBuilderPage burgerBuilderPage = new BurgerBuilderPage(getDriver());
         burgerBuilderPage

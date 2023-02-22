@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import org.example.data.User;
 import org.example.data.UserGenerator;
 import org.example.pom.HeaderPage;
@@ -47,11 +48,13 @@ public class TestBase {
         return driver;
     }
 
+    @Step("ожидание загрузки главной страницы")
     public static void waitForLoadHomePage() {
         new WebDriverWait(driver, Duration.ofSeconds(90))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("BurgerIngredients_ingredients__1N8v2")));
     }
 
+    @Step("Регистрация пользователя")
     public static User registerNewUser() {
         User user = UserGenerator.generateUser();
 
@@ -97,6 +100,7 @@ public class TestBase {
         return result;
     }
 
+    @Step("Логин на сайт под пользователем")
     public HomePage userSignIn(User user) {
         LoginPage loginPage = new LoginPage(driver);
         getLOGIN_PAGE();
@@ -109,6 +113,7 @@ public class TestBase {
                 .waitForLoadHomePage();
     }
 
+    @Step("Открыть Личный кабинет пользователя")
     public PersonalAccountPage openPersonalAccount() {
         PersonalAccountPage personalAccountPage = new PersonalAccountPage(driver);
         HeaderPage headerPage = new HeaderPage(driver);
